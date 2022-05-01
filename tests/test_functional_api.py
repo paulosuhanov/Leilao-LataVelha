@@ -42,7 +42,7 @@ def test_list_cars():
     assert response.status_code == 200
     result = response.json()
     assert len(result) == 0
-    
+
 def test_list_users():
     response = client.get("/users")
     assert response.status_code == 200
