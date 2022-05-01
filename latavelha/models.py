@@ -1,8 +1,8 @@
-from unicodedata import name
-from sqlmodel import SQLModel, Field, select
-from typing import Optional
-from pydantic import validator
 from datetime import datetime
+from typing import Optional
+
+from pydantic import validator
+from sqlmodel import Field, SQLModel
 
 
 class Car(SQLModel, table=True):
@@ -18,13 +18,13 @@ class Car(SQLModel, table=True):
     @validator("price")
     def validate_price(cls, v, field):
         if v < 1.00 or v > 100000000.00:
-            raise RuntimeError(f"{field.name} deve ser entre 1.00 e 100M")
+            raise RuntimeError("{field.name} deve ser entre 1.00 e 100M")
         return v
 
     @validator("year")
     def validate_year(cls, v):
         if v < 1800 or v > 2022:
-            raise RuntimeError(f"O Ano deve ser entre 1800 e 2022")
+            raise RuntimeError("O Ano deve ser entre 1800 e 2022")
         return v
 
 
@@ -39,5 +39,5 @@ class User(SQLModel, table=True):
     @validator("year")
     def validate_year(cls, v):
         if v < 1900 or v > 2022:
-            raise RuntimeError(f"O Ano deve ser entre 1800 e 2022")
+            raise RuntimeError("O Ano deve ser entre 1800 e 2022")
         return v
