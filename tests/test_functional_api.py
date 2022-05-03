@@ -37,11 +37,13 @@ def test_add_user_via_api():
     assert result["username"] == "jose.maria"
     assert result["id"] == 1
 
+
 def test_list_cars():
     response = client.get("/api/v1/cars")
     assert response.status_code == 200
     result = response.json()
     assert len(result) == 0
+
 
 def test_list_users():
     response = client.get("/api/v1/users")

@@ -1,4 +1,3 @@
-from importlib.resources import path
 from typing import List
 
 from fastapi import FastAPI, Request
@@ -17,6 +16,7 @@ api = FastAPI(title="Leilão Lata Velha")
 flask_app = Flask(__name__, template_folder="../latavelha/app/templates")
 
 api.mount("/leilao", WSGIMiddleware(flask_app))
+
 
 # Flask Section
 @flask_app.route("/")
@@ -51,7 +51,7 @@ def new_product():
 @flask_app.route("/sales/<id>")
 def sale(id):
     # Renderiza página de cada produto em leilão
-    return jsonify({"status": 200, "text": f"Product is here!"})
+    return jsonify({"status": 200, "text": "Product is here!"})
 
 
 @flask_app.route("/user/login")

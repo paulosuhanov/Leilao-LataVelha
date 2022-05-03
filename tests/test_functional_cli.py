@@ -4,6 +4,7 @@ from latavelha.cli import main
 
 runner = CliRunner()
 
+
 def test_add_car():
     result = runner.invoke(
         main, [
@@ -33,8 +34,10 @@ def test_add_user():
     assert result1.exit_code == 0
     assert "Add User to Database" in result1.stdout
 
+
 def test_get_cars():
     pass
+
 
 def test_get_users():
     pass
