@@ -14,7 +14,7 @@ from latavelha.serializers import CarIn, CarOut, UserIn, UserOut
 
 # init FastAPI APP
 api = FastAPI(title="Leilão Lata Velha")
-flask_app = Flask(__name__, template_folder="../app/templates")
+flask_app = Flask(__name__, template_folder="../latavelha/app/templates")
 
 api.mount("/leilao", WSGIMiddleware(flask_app))
 
