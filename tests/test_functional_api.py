@@ -7,7 +7,7 @@ client = TestClient(api)
 
 def test_add_car_via_api():
     response = client.post(
-        "/cars",
+        "/api/v1/cars",
         json={
             "marca": "Ford",
             "model": "Fusion",
@@ -25,7 +25,7 @@ def test_add_car_via_api():
 
 def test_add_user_via_api():
     response = client.post(
-        "/users", json={
+        "/api/v1/users", json={
             "name": "José Maria",
             "year": 1975,
             "username": "jose.maria",
@@ -38,13 +38,13 @@ def test_add_user_via_api():
     assert result["id"] == 1
 
 def test_list_cars():
-    response = client.get("/cars")
+    response = client.get("/api/v1/cars")
     assert response.status_code == 200
     result = response.json()
     assert len(result) == 0
 
 def test_list_users():
-    response = client.get("/users")
+    response = client.get("/api/v1/users")
     assert response.status_code == 200
     result = response.json()
     assert len(result) == 0

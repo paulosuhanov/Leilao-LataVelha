@@ -1,6 +1,9 @@
+from importlib.resources import path
 from typing import List
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse, FileResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 
 from latavelha.core import get_cars_from_database, get_users_from_database
 from latavelha.database import get_session
@@ -8,6 +11,20 @@ from latavelha.models import Car, User
 from latavelha.serializers import CarIn, CarOut, UserIn, UserOut
 
 api = FastAPI(title="Leilão Lata Velha")
+
+
+templates = Jinja2Templates(directory="./templates")
+
+
+@api.get("/")
+def form_post(request: Request):
+    result = "Type a number"
+    return templates.TemplateResponse('index.html', context={'request': request, 'result': result})
+
+# @api.get("/", response_class=FileResponse)
+# def index():
+#     path1 = '/latavelha/templates/index.html'
+#     return FileResponse(path1)
 
 
 @api.get("/api/v1/cars", response_model=List[CarOut])
